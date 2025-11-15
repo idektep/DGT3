@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "name": "RTSControls",
+    "maps": [
+        {
+            "name": "CameraControl",
+            "id": "fa859aa9-3fba-49e1-b9e6-5b571ef271d8",
+            "actions": [
+                {
+                    "name": "Pan",
+                    "type": "Value",
+                    "id": "ada53d81-9682-4d09-9440-e648daf5c400",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "7ec6ff00-7e74-4781-969a-2480fc015cc4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Value",
+                    "id": "df7ee8c5-144d-49a0-b417-ae055296af41",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3df585db-2fba-4460-8f45-bb0c714e02d9",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b38131c-8799-4d6b-a37e-cda43afd4406",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0fabf6e6-6d0a-4547-badf-78fbe6c2d856",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

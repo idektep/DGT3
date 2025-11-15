@@ -1,0 +1,148 @@
+{
+    "version": 1,
+    "name": "RobotControls",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "f270770e-5d44-4ebc-acd1-6da07dcde0a4",
+            "actions": [
+                {
+                    "name": "forwardAction",
+                    "type": "Button",
+                    "id": "9114e8cb-0e0a-4821-bbf2-6d0f2273c553",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "backwardAction",
+                    "type": "Button",
+                    "id": "e6178818-028e-4a0d-8f37-b8e407623e0a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "leftAction",
+                    "type": "Button",
+                    "id": "d9372aa5-7c69-46f5-bf3c-2eac98505877",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "rightAction",
+                    "type": "Button",
+                    "id": "edcfddd8-4935-4539-9805-8d0d0ecfd833",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "stopAction",
+                    "type": "PassThrough",
+                    "id": "224a1f5c-67fa-4633-9c67-40326eea531e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1202c203-78eb-428d-a549-929d9c721d8a",
+                    "path": "<Keyboard>/w",
+                    "interactions": "Press(pressPoint=0.1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "forwardAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "988c2c80-e4f8-4c4e-915d-b36f6b51b211",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "backwardAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df053743-fc87-43cf-97a6-b383d4919553",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0818328e-ba44-47bc-a92e-b55d7154f01d",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b06d961d-8d24-48f6-af45-339b4825d3dc",
+                    "path": "<Keyboard>/w",
+                    "interactions": "Press(pressPoint=0.5,behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "stopAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c6560df-111b-4fa4-86cc-b485f9305746",
+                    "path": "<Keyboard>/s",
+                    "interactions": "Press(pressPoint=0.5,behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "stopAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d7de860-82fc-40aa-8ab9-6dd9fc4d84be",
+                    "path": "<Keyboard>/a",
+                    "interactions": "Press(pressPoint=0.5,behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "stopAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7af89bf0-f67d-4daa-8a88-34965f2395f9",
+                    "path": "<Keyboard>/d",
+                    "interactions": "Press(pressPoint=0.5,behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "stopAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
