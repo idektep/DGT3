@@ -1,0 +1,8 @@
+let value = Number(msg.payload);
+
+if (value < 0)
+{
+    msg.payload = "LOW";
+}
+
+return msg;
