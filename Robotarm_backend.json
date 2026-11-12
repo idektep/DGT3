@@ -1,0 +1,305 @@
+[
+    {
+        "id": "a40746a321bda021",
+        "type": "tab",
+        "label": "Robotarm_Backend",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "02c595a1f6772068",
+        "type": "debug",
+        "z": "a40746a321bda021",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "d0c2d05882d6a020",
+        "type": "inject",
+        "z": "a40746a321bda021",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "trig",
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "1a3bebadc5099f46"
+            ]
+        ]
+    },
+    {
+        "id": "ac0314d3d3ad720e",
+        "type": "mqtt in",
+        "z": "a40746a321bda021",
+        "name": "",
+        "topic": "<prefix>/arm/status/pose",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4d9a9da2af3b212b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 360,
+        "wires": [
+            [
+                "1a3bebadc5099f46",
+                "ced8a27222eb5451"
+            ]
+        ]
+    },
+    {
+        "id": "1a3bebadc5099f46",
+        "type": "join",
+        "z": "a40746a321bda021",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": false,
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 490,
+        "y": 360,
+        "wires": [
+            [
+                "dac6afe6dfc36004",
+                "02c595a1f6772068"
+            ]
+        ]
+    },
+    {
+        "id": "dac6afe6dfc36004",
+        "type": "function",
+        "z": "a40746a321bda021",
+        "name": "function 1",
+        "func": "let raw = msg.payload[\"<prefix>/arm/status/pose\"];\nmsg.payload=raw;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 360,
+        "wires": [
+            [
+                "36836e24396f9cd7"
+            ]
+        ]
+    },
+    {
+        "id": "36836e24396f9cd7",
+        "type": "file",
+        "z": "a40746a321bda021",
+        "name": "",
+        "filename": "/data/DGTBOT1/path.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 890,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c7bae43bcce21fe6",
+        "type": "file in",
+        "z": "a40746a321bda021",
+        "name": "Read path.csv",
+        "filename": "/data/DGTBOT1/path.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 340,
+        "y": 480,
+        "wires": [
+            [
+                "4c976bc4fbdafe6e"
+            ]
+        ]
+    },
+    {
+        "id": "4c976bc4fbdafe6e",
+        "type": "split",
+        "z": "a40746a321bda021",
+        "name": "Split lines",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "stream": false,
+        "addname": "",
+        "x": 500,
+        "y": 480,
+        "wires": [
+            [
+                "c29600a139d1304d"
+            ]
+        ]
+    },
+    {
+        "id": "c29600a139d1304d",
+        "type": "delay",
+        "z": "a40746a321bda021",
+        "name": "Delay 1.5s per line",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1.5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 690,
+        "y": 480,
+        "wires": [
+            [
+                "9b3b9744a5d2ef73"
+            ]
+        ]
+    },
+    {
+        "id": "9b3b9744a5d2ef73",
+        "type": "function",
+        "z": "a40746a321bda021",
+        "name": "Format MQTT payload",
+        "func": "let line = msg.payload.trim();\nif (!line) return null;\nmsg.topic = \"dgt_arm/arm/control\";\nmsg.payload = \"moveset:\" + line;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 480,
+        "wires": [
+            [
+                "c191a2811f3be054"
+            ]
+        ]
+    },
+    {
+        "id": "c191a2811f3be054",
+        "type": "mqtt out",
+        "z": "a40746a321bda021",
+        "name": "",
+        "topic": "<prefix>/arm/control",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "4d9a9da2af3b212b",
+        "x": 1160,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "0fee368f592b1d37",
+        "type": "inject",
+        "z": "a40746a321bda021",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "c7bae43bcce21fe6"
+            ]
+        ]
+    },
+    {
+        "id": "ced8a27222eb5451",
+        "type": "debug",
+        "z": "a40746a321bda021",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "4d9a9da2af3b212b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
